@@ -17,8 +17,13 @@ export default function Application() {
     appointments: {},
     interviewers: {}
   });
+  
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  }
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const dailyInterviewers = getInterviewersForDay(state, state.day);
   const meetings = dailyAppointments.map((appointment) => {
     console.log('appointment.interview is:', appointment.interview)
     const interview = getInterview(state, appointment.interview)  
@@ -27,7 +32,9 @@ export default function Application() {
       key={appointment.id}
       id={appointment.id}
       time={appointment.time}
+      interviewers={dailyInterviewers}
       interview={interview} //obj with a student name and interviewer number
+      bookInterview={bookInterview}
       />
     )
   })
