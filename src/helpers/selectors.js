@@ -1,5 +1,3 @@
-//This returns an array of the appointments: 
-//e.g. [{id: 1, time: '12pm", interview: null}]
 export function getAppointmentsForDay(state, day) {
   let appointments = [];
   const filteredDays = state.days.filter(dayName => dayName.name === day);
@@ -22,3 +20,13 @@ export function getInterview(state, interview) {
 
   return interviewObject;
 }
+
+export function getInterviewersForDay(state, day) {
+  let interviewersMap = [];
+  const filteredAppts = state.days.filter(dayName => dayName.name === day);
+
+  if (filteredAppts.length) {
+    interviewersMap = filteredAppts[0].interviewers.map(y => state.interviewers[y]);
+  }
+  return interviewersMap;
+} 
