@@ -18,9 +18,22 @@ export default function Application() {
     interviewers: {}
   });
   
-  function bookInterview(id, interview) {
-    console.log(id, interview);
-  }
+  useEffect(() => {
+    const URLdays = "/api/days"
+    const URLappointments = "/api/appointments"
+    const URLinterviewers = "/api/interviewers"
+    Promise.all([
+      axios.get(URLdays),
+      axios.get(URLappointments),
+      axios.get(URLinterviewers)
+    ]).then((response) => {
+      setState(prev => ({...prev, 
+        days: response[0].data, 
+        appointments: response[1].data,
+        interviewers: response[2].data,
+       }));
+    })
+  }, []);
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
@@ -38,24 +51,29 @@ export default function Application() {
       />
     )
   })
+
+  function bookInterview(id, interview) {
+    console.log('id:', id, 'rest: ', id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    }
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    
+    setState({
+      ...state,
+      appointments
+    });
+  }
+
+  
   console.log('this state.interviewers: ', state.interviewers)
   console.log('this is state.days:', state.days)
-  useEffect(() => {
-    const URLdays = "/api/days"
-    const URLappointments = "/api/appointments"
-    const URLinterviewers = "/api/interviewers"
-    Promise.all([
-      axios.get(URLdays),
-      axios.get(URLappointments),
-      axios.get(URLinterviewers)
-    ]).then((response) => {
-      setState(prev => ({...prev, 
-        days: response[0].data, 
-        appointments: response[1].data,
-        interviewers: response[2].data,
-       }));
-    })
-  }, []);
+
   return (
     <main className="layout">
       <section className="sidebar">
