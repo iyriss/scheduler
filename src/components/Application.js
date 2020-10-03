@@ -44,7 +44,7 @@ export default function Application(props) {
       id={appointment.id}
       time={appointment.time}
       interviewers={dailyInterviewers}
-      interview={interview} //obj with a student name and interviewer number
+      interview={interview} //obj e.g  interview: { student: "Chad Takahashi", interviewer: {id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png"} }
       bookInterview={bookInterview}
       cancelInterview={cancelInterview}
       />

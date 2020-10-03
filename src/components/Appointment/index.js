@@ -14,6 +14,7 @@ const CREATE = "CREATE"
 const SAVING = "SAVING";
 const DELETING = "DELETING"
 const CONFIRM = "CONFIRM"
+const EDIT = "EDIT"
 
 const Appointment = (props) => {
 
@@ -45,15 +46,21 @@ const Appointment = (props) => {
     transition(EMPTY)
   })
 }
+  function edit() {
+    transition(EDIT)
+  }
+
+
   return (
     <article className="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => {transition(CREATE)}} /> }
-      {mode === SHOW && (<Show student={props.interview.student} interviewer={props.interview.interviewer} onDelete={confirm} /> )}
+      {mode === SHOW && (<Show student={props.interview.student} interviewer={props.interview.interviewer} onDelete={confirm} onEdit={edit}/> )}
       {mode === CREATE && (<Form interviewers={props.interviewers} onSave={save} onCancel={() => back()} /> )}
       {mode === SAVING && (<Status message="Saving..." />)}
       {mode === DELETING && (<Status message="Deleting..." />)}
       {mode === CONFIRM && (<Confirm message="Are you sure you want to delete the appointment?" onConfirm={deleteInterview} onCancel={() => back ()} />)}
+      {mode === EDIT && (<Form name={props.interview.student} interviewers={props.interviewers} interviewer={props.interview.interviewer.id} onSave={save} onCancel={() => back()} />)}
     </article>
   
   );
