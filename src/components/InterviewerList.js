@@ -11,12 +11,12 @@ const InterviewerList = (props) => {
         key={person.id}
         // id={person.id}
         name={person.name}
-        avatar={person.avatar} 
+        avatar={person.avatar}
         selected={person.id ===  props.value}
         // setInterviewer={setInterviewer}
         setInterviewer={event => props.onChange(person.id)}/>
-    )
-  })
+    );
+  });
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewers</h4>

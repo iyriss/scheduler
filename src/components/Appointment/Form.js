@@ -9,17 +9,17 @@ const Form = (props) => {
   const reset = () => {
     setName("");
     setInterviewer(null);
-  }
+  };
 
   const cancel = () => {
     reset();
     props.onCancel();
-  }
+  };
 
   const save = () => {
     if (interviewer)
-    props.onSave(name, interviewer);
-  }
+      props.onSave(name, interviewer);
+  };
 
   return (
     <main className="appointment__card appointment__card--create">
