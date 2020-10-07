@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Show = (props) => {
-  console.log("interviewers Show: ", props.interviewer);
+  // console.log("interviewers Show: ", props.interviewer);
 
   return (
     <main className="appointment__card appointment__card--show">
