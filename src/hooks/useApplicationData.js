@@ -1,6 +1,5 @@
 import { useState , useEffect } from "react";
 import axios from "axios";
-import InterviewerListItem from "components/InterviewerListItem";
 
 export default function useApplicationData() {
   const setDay = day => setState({ ...state, day });

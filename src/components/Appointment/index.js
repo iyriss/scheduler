@@ -32,7 +32,7 @@ const Appointment = (props) => {
     };
     transition(SAVING);
     props.bookInterview(props.id, interview)
-    // console.log("What is this:", props.bookInterview(props.id))
+  
       .then(() => {
         transition(SHOW);
       })

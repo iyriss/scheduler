@@ -4,17 +4,15 @@ import 'components/InterviewerList.scss';
 import PropTypes from 'prop-types';
 
 const InterviewerList = (props) => {
-  // console.log(props)
+
   const interviews = props.interviewers.map(person => {
     return (
       <InterviewerListItem
       
         key={person.id}
-        // id={person.id}
         name={person.name}
         avatar={person.avatar}
         selected={person.id ===  props.value}
-        // setInterviewer={setInterviewer}
         setInterviewer={event => props.onChange(person.id)}/>
     );
   });
